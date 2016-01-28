@@ -292,8 +292,8 @@ def ssh_channel_select(): pass
 @libssh(argtypes=[c_void_p, c_int])
 def ssh_channel_set_blocking(): pass
 
-@libssh(argtypes=[c_void_p, c_void_p])
-def ssh_channel_set_counter(): pass
+#@libssh(argtypes=[c_void_p, c_void_p])
+#def ssh_channel_set_counter(): pass
 
 @libssh(argtypes=[c_void_p, c_void_p, c_uint32], restype=c_int)
 def ssh_channel_write(): pass
@@ -325,11 +325,11 @@ def ssh_finalize(): pass
 @libssh(argtypes=[c_void_p, c_int, c_int, POINTER(c_int)], restype=c_void_p)
 def ssh_channel_accept_forward(): pass
 
-@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
-def ssh_channel_cancel_forward(): pass
+#@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
+#def ssh_channel_cancel_forward(): pass
 
-@libssh(argtypes=[c_void_p, c_char_p, c_int, POINTER(c_int)], restype=c_int)
-def ssh_channel_listen_forward(): pass
+#@libssh(argtypes=[c_void_p, c_char_p, c_int, POINTER(c_int)], restype=c_int)
+#def ssh_channel_listen_forward(): pass
 
 @libssh(argtypes=[c_void_p])
 def ssh_free(): pass
