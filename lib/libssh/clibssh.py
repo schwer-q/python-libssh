@@ -229,8 +229,8 @@ def ssh_channel_is_open(): pass
 @libssh(argtypes=[c_void_p], restype=c_void_p)
 def ssh_channel_new(): pass
 
-@libssh(argtypes=[c_void_p], restype=c_int)
-def ssh_channel_open_auth_agent(): pass
+# @libssh(argtypes=[c_void_p], restype=c_int)
+# def ssh_channel_open_auth_agent(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p, c_int, c_char_p, c_int], restype=c_int)
 def ssh_channel_open_forward(): pass
@@ -238,20 +238,20 @@ def ssh_channel_open_forward(): pass
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_channel_open_session(): pass
 
-@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
-def ssh_channel_open_x11(): pass
+# @libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
+# def ssh_channel_open_x11(): pass
 
 @libssh(argtypes=[c_void_p, c_int], restype=c_int)
 def ssh_channel_poll(): pass
 
-@libssh(argtypes=[c_void_p, c_int, c_int], restype=c_int)
-def ssh_channel_poll_timeout(): pass
+# @libssh(argtypes=[c_void_p, c_int, c_int], restype=c_int)
+# def ssh_channel_poll_timeout(): pass
 
 @libssh(argtypes=[c_void_p, c_void_p, c_uint32, c_int], restype=c_int)
 def ssh_channel_read(): pass
 
-@libssh(argtypes=[c_void_p, c_void_p, c_uint32, c_int, c_int], restype=c_int)
-def ssh_channel_read_timeout(): pass
+# @libssh(argtypes=[c_void_p, c_void_p, c_uint32, c_int, c_int], restype=c_int)
+# def ssh_channel_read_timeout(): pass
 
 @libssh(argtypes=[c_void_p, c_void_p, c_uint32, c_int], restype=c_int)
 def ssh_channel_read_nonblocking(): pass
@@ -292,14 +292,20 @@ def ssh_channel_select(): pass
 @libssh(argtypes=[c_void_p, c_int])
 def ssh_channel_set_blocking(): pass
 
-#@libssh(argtypes=[c_void_p, c_void_p])
-#def ssh_channel_set_counter(): pass
+# @libssh(argtypes=[c_void_p, c_void_p])
+# def ssh_channel_set_counter(): pass
 
 @libssh(argtypes=[c_void_p, c_void_p, c_uint32], restype=c_int)
 def ssh_channel_write(): pass
 
 @libssh(argtypes=[c_void_p], restype=c_uint32)
 def ssh_channel_window_size(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, POINTER(c_void_p), POINTER(c_int)], restype=c_int)
+def ssh_try_publickey_from_file(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_auth_list(): pass
 
 @libssh(argtypes=[c_char_p], restype=c_char_p)
 def ssh_basename(): pass
@@ -322,14 +328,23 @@ def ssh_dirname(): pass
 @libssh(restype=c_int)
 def ssh_finalize(): pass
 
-@libssh(argtypes=[c_void_p, c_int, c_int, POINTER(c_int)], restype=c_void_p)
-def ssh_channel_accept_forward(): pass
+@libssh(argtypes=[c_void_p, c_int], restype=c_void_p)
+def ssh_forward_accept(): pass
 
-#@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
-#def ssh_channel_cancel_forward(): pass
+@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
+def ssh_forward_cancel(): pass
 
-#@libssh(argtypes=[c_void_p, c_char_p, c_int, POINTER(c_int)], restype=c_int)
-#def ssh_channel_listen_forward(): pass
+@libssh(argtypes=[c_void_p, c_char_p, c_int, POINTER(c_int)], restype=c_int)
+def ssh_forward_listen(): pass
+
+# @libssh(argtypes=[c_void_p, c_int, c_int, POINTER(c_int)], restype=c_void_p)
+# def ssh_channel_accept_forward(): pass
+
+# @libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
+# def ssh_channel_cancel_forward(): pass
+
+# @libssh(argtypes=[c_void_p, c_char_p, c_int, POINTER(c_int)], restype=c_int)
+# def ssh_channel_listen_forward(): pass
 
 @libssh(argtypes=[c_void_p])
 def ssh_free(): pass
@@ -355,11 +370,17 @@ def ssh_get_issue_banner(): pass
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_get_openssh_version(): pass
 
-@libssh(argtypes=[c_void_p, POINTER(c_void_p)], restype=c_int)
-def ssh_get_publickey(): pass
+@libssh(argtypes=[c_void_p], restype=c_void_p)
+def ssh_get_pubkey(): pass
 
-@libssh(argtypes=[c_void_p, c_int, POINTER(POINTER(c_uint8)), POINTER(c_uint32)], restype=c_int)
-def ssh_get_publickey_hash(): pass
+@libssh(argtypes=[c_void_p, POINTER(POINTER(c_uint8))], restype=c_int)
+def ssh_get_pubkey_hash(): pass
+
+# @libssh(argtypes=[c_void_p, POINTER(c_void_p)], restype=c_int)
+# def ssh_get_publickey(): pass
+
+# @libssh(argtypes=[c_void_p, c_int, POINTER(POINTER(c_uint8)), POINTER(c_uint32)], restype=c_int)
+# def ssh_get_publickey_hash(): pass
 
 @libssh(argtypes=[c_void_p, c_int, c_int], restype=c_int)
 def ssh_get_random(): pass
@@ -370,8 +391,8 @@ def ssh_get_version(): pass
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_get_status(): pass
 
-@libssh(argtypes=[c_void_p], restype=c_int)
-def ssh_get_poll_flags(): pass
+# @libssh(argtypes=[c_void_p], restype=c_int)
+# def ssh_get_poll_flags(): pass
 
 @libssh(restype=c_int)
 def ssh_init(): pass
@@ -385,20 +406,20 @@ def ssh_is_connected(): pass
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_is_server_known(): pass
 
-@libssh(argtypes=[c_void_p], restype=c_int)
-def ssh_get_version(): pass
+# @libssh(argtypes=[c_void_p], restype=c_int)
+# def ssh_get_version(): pass
 
-@libssh(argtypes=[c_int], restype=c_int)
-def ssh_set_log_level(): pass
+# @libssh(argtypes=[c_int], restype=c_int)
+# def ssh_set_log_level(): pass
 
-@libssh(restype=c_int)
-def ssh_get_log_level(): pass
+# @libssh(restype=c_int)
+# def ssh_get_log_level(): pass
 
-@libssh(restype=c_void_p)
-def ssh_get_log_userdata(): pass
+# @libssh(restype=c_void_p)
+# def ssh_get_log_userdata(): pass
 
-@libssh(argtypes=[c_void_p], restype=c_int)
-def ssh_set_log_userdata(): pass
+# @libssh(argtypes=[c_void_p], restype=c_int)
+# def ssh_set_log_userdata(): pass
 
 @libssh(argtypes=[c_void_p], restype=c_void_p)
 def ssh_message_channel_request_open_reply_accept(): pass
@@ -436,11 +457,11 @@ def ssh_options_parse_config(): pass
 @libssh(argtypes=[c_void_p, c_int, c_void_p], restype=c_int)
 def ssh_options_set(): pass
 
-@libssh(argtypes=[c_void_p, c_int, POINTER(c_char_p)], restype=c_int)
-def ssh_options_get(): pass
+# @libssh(argtypes=[c_void_p, c_int, POINTER(c_char_p)], restype=c_int)
+# def ssh_options_get(): pass
 
-@libssh(argtypes=[c_void_p, POINTER(c_uint32)], restype=c_int)
-def ssh_options_get_port(): pass
+# @libssh(argtypes=[c_void_p, POINTER(c_uint32)], restype=c_int)
+# def ssh_options_get_port(): pass
 
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_pcap_file_close(): pass
@@ -454,30 +475,89 @@ def ssh_pcap_file_new(): pass
 @libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
 def ssh_pcap_file_open(): pass
 
-#
-# XXX: skipped from `SSH authentication callback' to `USERAUTH'
-#
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_privatekey_type(): pass
+
+@libssh(argtypes=[c_char_p, POINTER(c_uint8), c_uint32])
+def ssh_print_hexa(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_accept_request(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_close(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
-def ssh_userauth_none(): pass
+def ssh_scp_deny_request(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_scp_free(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_init(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_leave_directory(): pass
+
+@libssh(argtypes=[c_void_p, c_int, c_char_p], restype=c_void_p)
+def ssh_scp_new(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_pull_request(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_int], restype=c_int)
+def ssh_scp_push_directory(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_uint32, c_int], restype=c_int)
+def ssh_scp_push_file(): pass
+
+@libssh(argtypes=[c_void_p, c_void_p, c_uint32], restype=c_int)
+def ssh_scp_read(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_char_p)
+def ssh_scp_request_get_filename(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_scp_request_get_permissions(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_uint32)
+def ssh_scp_request_get_size(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_char_p)
+def ssh_scp_request_get_warning(): pass
+
+@libssh(argtypes=[c_void_p, c_void_p, c_uint32], restype=c_int)
+def ssh_scp_write(): pass
+
+@libssh(argtypes=[POINTER(c_void_p), POINTER(c_void_p), c_int, c_void_p, c_void_p], restype=c_int)
+def ssh_select(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
-def ssh_userauth_list(): pass
+def ssh_service_request(): pass
+
+@libssh(argtypes=[c_void_p, c_int])
+def ssh_set_blocking(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_set_fd_except(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_set_fd_toread(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_set_fd_towrite(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_silent_disconnect(): pass
+
+@libssh(argtypes=[c_void_p, c_void_p], restype=c_int)
+def ssh_set_pcap_file(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p, c_void_p], restype=c_int)
-def ssh_userauth_try_publickey(): pass
-
-@libssh(argtypes=[c_void_p, c_char_p, c_void_p], restype=c_int)
-def ssh_userauth_publickey(): pass
+def ssh_userauth_agent_pubkey(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
-def ssh_userauth_agent(): pass
-
-@libssh(argtypes=[c_void_p, c_char_p, c_char_p], restype=c_int)
-def ssh_userauth_publickey_auto(): pass
-
-@libssh(argtypes=[c_void_p, c_char_p, c_char_p], restype=c_int)
-def ssh_userauth_password(): pass
+def ssh_userauth_autopubkey(): pass
 
 @libssh(argtypes=[c_void_p, c_char_p, c_char_p], restype=c_int)
 def ssh_userauth_kbdint(): pass
@@ -490,6 +570,87 @@ def ssh_userauth_kbdint_getname(): pass
 
 @libssh(argtypes=[c_void_p], restype=c_int)
 def ssh_userauth_kbdint_getnprompts(): pass
+
+@libssh(argtypes=[c_void_p, c_uint32, c_char_p], restype=c_char_p)
+def ssh_userauth_kbdint_getprompt(): pass
+
+@libssh(argtypes=[c_void_p, c_uint32, c_char_p], restype=c_int)
+def ssh_userauth_kbdint_setanswer(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
+def ssh_userauth_list(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
+def ssh_userauth_none(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_int, c_void_p], restype=c_int)
+def ssh_userauth_offer_pubkey(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_char_p], restype=c_int)
+def ssh_userauth_password(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_void_p, c_void_p], restype=c_int)
+def ssh_userauth_pubkey(): pass
+
+@libssh(argtypes=[c_void_p, c_char_p, c_char_p, c_char_p], restype=c_int)
+def ssh_userauth_privatekey_file(): pass
+
+@libssh(argtypes=[c_int], restype=c_char_p)
+def ssh_version(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_int)
+def ssh_write_knownhost(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_string_burn(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_void_p)
+def ssh_string_copy(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_void_p)
+def ssh_string_data(): pass
+
+@libssh(argtypes=[c_void_p, c_void_p, c_uint32], restype=c_int)
+def ssh_string_fill(): pass
+
+@libssh(argtypes=[c_void_p])
+def ssh_string_free(): pass
+
+@libssh(argtypes=[c_char_p], restype=c_void_p)
+def ssh_string_from_char(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_uint32)
+def ssh_string_len(): pass
+
+@libssh(argtypes=[c_uint32], restype=c_void_p)
+def ssh_string_new(): pass
+
+@libssh(argtypes=[c_void_p], restype=c_char_p)
+def ssh_string_to_char(): pass
+
+@libssh(argtypes=[c_char_p])
+def ssh_string_free_char(): pass
+
+@libssh(argtypes=[c_char_p, c_char_p, c_uint32, c_int, c_int], restype=c_int)
+def ssh_getpass(): pass
+
+
+
+#
+# XXX: skipped from `SSH authentication callback' to `USERAUTH'
+#
+
+# @libssh(argtypes=[c_void_p, c_char_p, c_void_p], restype=c_int)
+# def ssh_userauth_try_publickey(): pass
+
+# @libssh(argtypes=[c_void_p, c_char_p, c_void_p], restype=c_int)
+# def ssh_userauth_publickey(): pass
+
+# @libssh(argtypes=[c_void_p, c_char_p], restype=c_int)
+# def ssh_userauth_agent(): pass
+
+# @libssh(argtypes=[c_void_p, c_char_p, c_char_p], restype=c_int)
+# def ssh_userauth_publickey_auto(): pass
 
 #
 # XXX: skipped from `ssh_userauth_kbdint_getprompt' until end
